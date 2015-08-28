@@ -1,3 +1,5 @@
+.icon-print { background-image: url(../images/print.png); }
+
 @media only print {
   #top-menu, #header, #footer, #sidebar, hr,
   .author, .attributes, #issue_tree, #relations,
