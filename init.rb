@@ -1,3 +1,5 @@
+require 'redmine_print_issue/view_hooks'
+
 Redmine::Plugin.register :redmine_print_issue do
   name 'Redmine Print Issue plugin'
   author 'Tacid'
