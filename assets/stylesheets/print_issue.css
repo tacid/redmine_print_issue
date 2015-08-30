@@ -1,10 +1,12 @@
-.icon-print { background-image: url(../images/print.png); }
+@media screen {
+  .icon-print { background-image: url(../images/print.png); }
+  body.redmine-print-issue { padding: 10pt; }
+  div.wiki { border-bottom: 1px dotted silver;
+             padding-bottom:10pt;
+             margin-bottom: 10pt; }
+  a.cancel-print, a.print-it { margin: 5pt; }
+}
 
-@media only print {
-  #top-menu, #header, #footer, #sidebar, hr,
-  .author, .attributes, #issue_tree, #relations,
-  #history, #issue-changesets, .contextual, .other-formats,
-  .attachments {display: none;}
-  div.issue {background: none; border:none; }
-  h2,h3 {font-size: 24px;}
+@media print {
+  a.cancel-print, a.print-it { display: none; }
 }

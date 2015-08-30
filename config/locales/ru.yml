@@ -1,0 +1,6 @@
+# Russian strings go here for Rails i18n
+ru:
+  project_module_print_issue: Печать задачи
+  cancel_print: Отмена
+  print_it: Печать
+  redmine_print_select_trackers: Выберите трекеры для печати

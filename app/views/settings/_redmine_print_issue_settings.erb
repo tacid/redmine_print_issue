@@ -1,0 +1,7 @@
+<p><%=
+plugin_setting_multiselect(
+  :plugin_redmine_print_issue,
+  :print_tracker_ids,
+  Tracker.sorted.collect {|t| [t.name, t.id.to_s]},
+  { label: :redmine_print_select_trackers })
+%></p>
