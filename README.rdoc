@@ -1,6 +1,6 @@
-= Plugin to pring issue description
+= Plugin to print an issue description
 === About
-This is simple plugin designed to print issue (currently only the description) using your HTML template.
+This is simple plugin designed to print an issue (currently only the description) using your HTML template.
 You can change the template on plugin settings page.
 
 Also You can enable/disable it for project and concrete trackers.
