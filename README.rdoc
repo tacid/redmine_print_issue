@@ -1,3 +1,13 @@
-= redmine_print_issue
+= Plugin to pring issue description
+=== About
+This is simple plugin designed to print issue (currently only the description) using your HTML template.
+You can change the template on plugin settings page.
 
-Plugin to pring issue
+Also You can enable/disable it for project and concrete trackers.
+
+=== Installation instructions
+
+Change to redmine plugins directory and make:
+    git clone https://github.com/tacid/redmine_print_issue
+
+After this you should restart your redmine and configure plugin.
