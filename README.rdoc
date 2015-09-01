@@ -3,7 +3,7 @@
 This is simple plugin designed to print an issue (currently only the description) using your HTML template.
 You can change the template on plugin settings page.
 
-Also You can enable/disable it for project and concrete trackers.
+Also You can enable/disable this plugin for project and concrete trackers.
 
 === Installation instructions
 
