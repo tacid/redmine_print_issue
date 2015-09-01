@@ -2,6 +2,10 @@
      Setting.plugin_redmine_print_issue[:print_tracker_ids].include?(@issue.tracker_id.to_s) then %>
 <% content_for :header_tags do %>
 <!-- redmine_print_issue BEGIN -->
+<script id="print-tmpl" type="text/html" charset="utf-8">
+<%= Setting.plugin_redmine_print_issue[:print_template].html_safe %>
+<%= render(partial: 'print_example_template') if Setting.plugin_redmine_print_issue[:print_template].blank? %>
+</script>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 var cancelLink = $('<a href="#" class="cancel-print icon icon-cancel"><%= t :cancel_print %></a>');

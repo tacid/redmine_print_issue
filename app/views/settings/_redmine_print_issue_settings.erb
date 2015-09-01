@@ -5,3 +5,12 @@ plugin_setting_multiselect(
   Tracker.sorted.collect {|t| [t.name, t.id.to_s]},
   { label: :redmine_print_select_trackers })
 %></p>
+<p>
+<label for="settings_print_template">
+  <%= l(:settings_print_template) %>
+  <small><%= l(:settings_print_template_description) %></small>
+</label>
+<%= text_area_tag("settings[print_template]",
+                  (settings[:print_template].blank? ? render(partial: 'issues/print_example_template') :  settings[:print_template]),
+                  { rows: 10} ) %>
+</p>
