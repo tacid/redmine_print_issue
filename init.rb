@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_print_issue do
   version '0.0.1'
   url 'http://github.com/tacid/redmine_print_issue'
   author_url 'https://github.com/tacid'
-  settings default: {empty: true}, partial: 'settings/redmine_print_issue_settings'
+  settings default: { :print_tracker_ids => Tracker.all.map{|t| t.id.to_s} }, partial: 'settings/redmine_print_issue_settings'
   project_module :print_issue do
     permission :print_issue_description, public: true
   end
