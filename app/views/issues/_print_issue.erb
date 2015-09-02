@@ -3,8 +3,8 @@
 <% content_for :header_tags do %>
 <!-- redmine_print_issue BEGIN -->
 <script id="print-tmpl" type="text/html" charset="utf-8">
-<%= Setting.plugin_redmine_print_issue[:print_template].html_safe %>
-<%= render(partial: 'print_example_template') if Setting.plugin_redmine_print_issue[:print_template].blank? %>
+<%= ($print_template = Setting.plugin_redmine_print_issue[:print_template]).blank? ?
+  render(partial: 'print_example_template') : $print_template.html_safe %>
 </script>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
