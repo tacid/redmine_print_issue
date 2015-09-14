@@ -22,11 +22,12 @@ redminePrintIssue = function() {
            .append(printLink)
            .append(cancelLink);
   $('body').find('[data-content="issue-description"]').append(issue);
+  window.print();
 }
 
 jQuery(function(){
   issue = $('div.description > div.wiki').html();
-  $('#content .description > .contextual').append(
+  $('#content > div.contextual > a.icon-edit').after(
     printLink.clone().on('click', redminePrintIssue)
   );
 });
