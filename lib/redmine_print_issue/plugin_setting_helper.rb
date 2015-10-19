@@ -1,3 +1,4 @@
+unless methods.include?(:plugin_setting_multiselect)
   def plugin_setting_multiselect(plugin_name, setting, choices, options={})
     setting_values = Setting.send(plugin_name)[setting]
     setting_values = [] unless setting_values.is_a?(Array)
@@ -18,3 +19,4 @@
          )
       end.join.html_safe
   end
+end

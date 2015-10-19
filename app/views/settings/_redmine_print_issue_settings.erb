@@ -1,3 +1,47 @@
+<% if settings[:print_templates].count == 1 and settings[:print_templates]["Default"].blank? then
+     settings[:print_templates]["Default"] = render(partial: 'issues/print_example_template')
+end %>
+<% content_for :header_tags do %>
+<style type="text/css" media="all">
+.templates-list { margin-left: 20px; }
+.template-view { display: block; width: 100%; }
+.template-view .actions { display: block; float: right; }
+.add-template   { }
+.delete-template {}
+</style>
+<script type="text/javascript" charset="utf-8">
+$(function(){
+  $('input[type=checkbox]').each(function(){
+    select=$('#select_template').clone().
+      attr("id","select_template_"+$(this).val()).
+      attr("name","settings[print_tracker_"+$(this).val()+"][]").
+      show();
+    $(this).closest('label').append(select);
+  });
+
+  $('a.edit-template').click(function(){
+    $('[name="settings[print_templates]['+$(this).attr("data-template-index")+']"]').toggle();
+    return false;
+  });
+  $('a.add-template').click(function(){
+    $(this).toggle();
+    $('.templates-list').append('<a class="icon icon-report"></a> <input type="text" id="template_add_name"><textarea id="template_add_html" rows="10"></textarea>');
+    $('form').submit(function(){
+      if( $('#template_add_name').val().length > 0 && $('#template_add_html').val().length > 0 ){
+        $('#template_add_html').attr("name","settings[print_templates]["+$('#template_add_name').val()+"]");
+      }
+    });
+    return false;
+  });
+  $('a.delete-template').click(function(){
+    if(confirm("Are you sure?")){ $(this).closest('.template-view').remove(); }
+    return false;
+  });
+})
+</script>
+<% end %>
+<%= select_tag "select_template", options_for_select( settings[:print_templates].map {|k,v| k.to_s }, "Default" ), multiple: false, style: "display: none;" %>
+<%= settings.inspect %>
 <p><%=
 plugin_setting_multiselect(
   :plugin_redmine_print_issue,
@@ -6,11 +50,24 @@ plugin_setting_multiselect(
   { label: :redmine_print_select_trackers })
 %></p>
 <p>
-<label for="settings_print_template">
+<label for="settings_print_templates">
   <%= l(:settings_print_template) %>
   <small><%= l(:settings_print_template_description) %></small>
 </label>
-<%= text_area_tag("settings[print_template]",
-                  (settings[:print_template].blank? ? render(partial: 'issues/print_example_template') :  settings[:print_template]),
-                  { rows: 10} ) %>
+<label id="settings_print_templates" class="block templates-list">
+  <% settings[:print_templates].each_with_index do |template, index| %>
+    <span class="block template-view">
+    <span>
+      <a class="edit-template icon icon-report" data-template-index="<%= template[0] %>" href="#"><%= template[0] %></a>
+    </span>
+    <span class="actions">
+      <% if index > 0 then %>
+        <a href="#" class="delete-template icon icon-del"><%= l(:button_delete) %></a>
+      <% end %>
+    </span>
+    <span><%= text_area_tag("settings[print_templates][#{template[0].to_s}]", template[1].to_s, { rows: 10, style: "display: none;"} ) %></span>
+    </span>
+  <% end %>
+        <a href="#" class="add-template icon icon-add"><%= l(:button_add) %></a>
+</label>
 </p>
