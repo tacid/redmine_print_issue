@@ -20,7 +20,7 @@ module RedminePrintIssue
         end
 
         def custom_value_for_name(name)
-          field_id = CustomField.find_by_name(name).id
+          field_id = CustomField.find_by_name(name).try(:id)
           custom_values.detect { |v| v.custom_field_id == field_id }
         end
       end
