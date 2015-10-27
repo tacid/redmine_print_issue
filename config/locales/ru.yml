@@ -2,7 +2,7 @@
 ru:
   project_module_print_issue: Печать задачи
   cancel_print: Отмена
-  print_it: Печать
+  print_it: Печать РКК
   redmine_print_select_trackers: Выберите трекеры для печати
   settings_print_template: HTML шаблон страницы для печати
   settings_print_template_description: (обязательно добавьте элемент с атрибутом data-content="issue-description", в этот элемент будет вставлено описание из задачи)
