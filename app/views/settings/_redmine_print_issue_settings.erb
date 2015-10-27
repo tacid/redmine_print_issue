@@ -1,3 +1,6 @@
+<% if settings[:print_templates].nil? then
+    settings[:print_templates]= [ { name: "Default", template: '' } ]
+end%>
 <% if settings[:print_templates].count == 1 and settings[:print_templates]["Default"].blank? then
      settings[:print_templates]["Default"] = render(partial: 'issues/print_example_template')
 end %>
