@@ -1,3 +1,6 @@
+<% if settings[:print_templates].nil? then
+     settings[:print_templates] = []
+end %>
 <% content_for :header_tags do %>
 <style type="text/css" media="all">
 .templates-list { margin-left: 20px; }
