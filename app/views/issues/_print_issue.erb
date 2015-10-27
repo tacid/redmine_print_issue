@@ -9,7 +9,7 @@
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 var cancelLink = $('<a href="#" class="cancel-print icon icon-cancel"><%= t :cancel_print %></a>');
-var printLink  = $('<a href="#" class="print-it icon icon-print"><%= t :print_it %></a>');
+var printLink  = $('<a href="<%= print_template_url(@issue) -%>" class="print-it icon icon-print"><%= t :print_it -%></a>');
 //]]>
 </script>
 <%= javascript_include_tag :print_issue, plugin: "redmine_print_issue" %>

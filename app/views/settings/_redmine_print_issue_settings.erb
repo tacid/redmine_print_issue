@@ -41,7 +41,6 @@ $(function(){
 </script>
 <% end %>
 <%= select_tag "select_template", options_for_select( settings[:print_templates].map {|k,v| k.to_s }, "Default" ), multiple: false, style: "display: none;" %>
-<%= settings.inspect %>
 <p><%=
 plugin_setting_multiselect(
   :plugin_redmine_print_issue,

@@ -28,6 +28,6 @@ redminePrintIssue = function() {
 jQuery(function(){
   issue = $('div.description > div.wiki').html();
   $('#content > div.contextual > a.icon-edit').after(
-    printLink.clone().on('click', redminePrintIssue)
+    printLink.clone()
   );
 });
