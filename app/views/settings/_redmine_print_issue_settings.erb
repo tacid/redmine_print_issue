@@ -11,14 +11,6 @@ end %>
 </style>
 <script type="text/javascript" charset="utf-8">
 $(function(){
-  $('input[type=checkbox]').each(function(){
-    select=$('#select_template').clone().
-      attr("id","select_template_"+$(this).val()).
-      attr("name","settings[print_tracker_"+$(this).val()+"][]").
-      show();
-    $(this).closest('label').append(select);
-  });
-
   $('a.edit-template').click(function(){
     $('[name="settings[print_templates]['+$(this).attr("data-template-index")+']"]').toggle();
     return false;
@@ -40,14 +32,31 @@ $(function(){
 })
 </script>
 <% end %>
-<%= select_tag "select_template", options_for_select( settings[:print_templates].map {|k,v| k.to_s }, "Default" ), multiple: false, style: "display: none;" %>
-<p><%=
-plugin_setting_multiselect(
-  :plugin_redmine_print_issue,
-  :print_tracker_ids,
-  Tracker.sorted.collect {|t| [t.name, t.id.to_s]},
-  { label: :redmine_print_select_trackers })
-%></p>
+<%= hidden_field_tag('settings[tracker_ids][]',"") %>
+<p>
+  <label>  <%= l :redmine_print_select_trackers %> </label>
+</p>
+<p>
+  <% Tracker.sorted.each do |tr|
+  settings["tracker_#{tr.id}_templates"] = [] if settings["tracker_#{tr.id}"].nil?
+  %>
+      <%=
+        content_tag('label',
+          tr.name.to_s.html_safe +
+          check_box_tag(
+             "settings[tracker_ids][]", tr.id.to_s,
+             (is_enabled_tracker=settings[:tracker_ids].include?(tr.id.to_s) rescue false), :id => nil)
+         )
+      %>
+      <label class="block">
+        <%= select_tag "settings[tracker_#{tr.id}_template]",
+          options_for_select( settings[:print_templates].map {|k,v| k.to_s }, settings["tracker_#{tr.id}_template"] ),
+                   class: "select-template", disabled: (not is_enabled_tracker),
+                   multiple: false %>
+     </label>
+  <% end %>
+</p>
+
 <p>
 <label for="settings_print_templates">
   <%= l(:settings_print_template) %>
