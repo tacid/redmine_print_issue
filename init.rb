@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_print_issue do
   url 'https://github.com/tacid/redmine_print_issue'
   author_url 'https://github.com/tacid'
   settings default: {
-    print_tracker_ids: Tracker.all.map{|t| t.id.to_s},
+    tracker_ids: Tracker.all.map{|t| t.id.to_s},
     print_templates: [ { name: "Default", template: '' } ]
   }, partial: 'settings/redmine_print_issue_settings'
   #project_module :issue_tracking do

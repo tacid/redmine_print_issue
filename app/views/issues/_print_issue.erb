@@ -1,4 +1,4 @@
-<% if Setting.plugin_redmine_print_issue[:print_tracker_ids].include?(@issue.tracker_id.to_s) then %>
+<% if Setting.plugin_redmine_print_issue[:tracker_ids].include?(@issue.tracker_id.to_s) then %>
 <% content_for :header_tags do %>
 <!-- redmine_print_issue BEGIN -->
 <script id="print-tmpl" type="text/html" charset="utf-8">
