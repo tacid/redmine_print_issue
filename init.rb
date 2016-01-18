@@ -1,10 +1,10 @@
 require 'redmine_print_issue'
 
 Redmine::Plugin.register :redmine_print_issue do
-  name 'Redmine Print Issue plugin'
+  name 'Redmine Print Templates plugin'
   author 'Tacid'
-  description 'This is a plugin for printing issue description with template'
-  version '1.2.3'
+  description 'This is a plugin for printing issue with ODT template description with template'
+  version '2.0.0'
   url 'https://github.com/tacid/redmine_print_issue'
   author_url 'https://github.com/tacid'
   settings default: {
