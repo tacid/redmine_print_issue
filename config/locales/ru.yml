@@ -9,5 +9,6 @@ ru:
   print_example_template_header: Пример шаблона для печати
   print_example_template_footer: Эта страница создана как пример. Вы можете изменить этот шаблон
   setting_plugin_redmine_print_issue: на странице настроек
+  settings_print_template_name: Печать
   permission_render_print_template: Генерация документов для печати
 

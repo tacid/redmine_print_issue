@@ -53,6 +53,7 @@ $(function(){
           options_for_select( settings[:print_templates].map {|k,v| k.to_s }, settings["tracker_#{tr.id}_template"] ),
                    class: "select-template", disabled: (not is_enabled_tracker),
                    multiple: false %>
+                 <%= text_field_tag "settings[tracker_#{tr.id}_name]", settings["tracker_#{tr.id}_name"] || l(:settings_print_template_name) %>
      </label>
   <% end %>
 </p>
@@ -79,3 +80,4 @@ $(function(){
         <a href="#" class="add-template icon icon-add"><%= l(:button_add) %></a>
 </label>
 </p>
+

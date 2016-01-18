@@ -9,4 +9,5 @@ en:
   print_example_template_header: This is example print page template
   print_example_template_footer: This is just an example. You can change template in the plugin
   setting_plugin_redmine_print_issue: on settins page
+  settings_print_template_name: Print
   permission_render_print_template: Render print templates
