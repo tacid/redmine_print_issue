@@ -1,18 +1,15 @@
 <% if Setting.plugin_redmine_print_issue[:tracker_ids].include?(@issue.tracker_id.to_s) then %>
-<% content_for :header_tags do %>
+  <% content_for :header_tags do %>
 <!-- redmine_print_issue BEGIN -->
-<script id="print-tmpl" type="text/html" charset="utf-8">
-<%= ($print_template = Setting.plugin_redmine_print_issue[:print_template]).blank? ?
-  render(partial: 'print_example_template') : $print_template.html_safe %>
-</script>
 <script type="text/javascript" charset="utf-8">
-//<![CDATA[
-var cancelLink = $('<a href="#" class="cancel-print icon icon-cancel"><%= t :cancel_print %></a>');
-//]]>
-var printLink  = $('<a href="<%= print_template_url(@issue) -%>" class="print-it icon icon-print"><%= t :print_it -%></a>');
+  var printLink  = $('<a href="<%= print_template_url(@issue) -%>" class="print-it icon icon-print"><%= Setting.plugin_redmine_print_issue["tracker_#{@issue.tracker_id.to_s}_name"] -%></a>');
+  jQuery(function(){
+    $('#content > div.contextual > a.icon-edit').after(
+      printLink.clone()
+    );
+  });
 </script>
-<%= javascript_include_tag :print_issue, plugin: "redmine_print_issue" %>
 <%= stylesheet_link_tag    :print_issue, plugin: "redmine_print_issue", media: :all %>
 <!-- redmine_print_issue END -->
-<% end %>
+  <% end %>
 <% end %>

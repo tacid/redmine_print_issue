@@ -4,8 +4,8 @@ en:
   cancel_print: Cancel
   print_it: Print
   redmine_print_select_trackers: Select trackers for plugin
-  setting_print_template: HTML template for the print page
-  setting_print_template_description: (You *SHOUL* add element with attribute data-content="issue-description" where issue description goes)
+  setting_print_template: ODT template for the print page
+  setting_print_template_description: (You *SHOULD* add your odt templates to the templates folder of plugin)
   print_example_template_header: This is example print page template
   print_example_template_footer: This is just an example. You can change template in the plugin
   setting_plugin_redmine_print_issue: on settins page

@@ -1,37 +1,24 @@
-<% if settings[:print_templates].nil? then
-     settings[:print_templates] = []
-end %>
+<%
+curdir=Dir.pwd
+Dir.chdir(File.expand_path(File.dirname(__FILE__))+"/../../../templates/")
+
+settings[:print_templates] = []
+Dir.glob('*.odt') { |file|
+  filename, ext = file.split('.odt')
+  settings[:print_templates] << filename
+}
+
+Dir.chdir(curdir)
+%>
+
 <% content_for :header_tags do %>
 <style type="text/css" media="all">
-.templates-list { margin-left: 20px; }
-.template-view { display: block; width: 100%; }
-.template-view .actions { display: block; float: right; }
-.add-template   { }
-.delete-template {}
+  .templates-list { margin-left: 20px; }
+  .template-view { display: block; width: 100%; }
+  .template-view .actions { display: block; float: right; }
 </style>
-<script type="text/javascript" charset="utf-8">
-$(function(){
-  $('a.edit-template').click(function(){
-    $('[name="settings[print_templates]['+$(this).attr("data-template-index")+']"]').toggle();
-    return false;
-  });
-  $('a.add-template').click(function(){
-    $(this).toggle();
-    $('.templates-list').append('<a class="icon icon-report"></a> <input type="text" id="template_add_name"><textarea id="template_add_html" rows="10"></textarea>');
-    $('form').submit(function(){
-      if( $('#template_add_name').val().length > 0 && $('#template_add_html').val().length > 0 ){
-        $('#template_add_html').attr("name","settings[print_templates]["+$('#template_add_name').val()+"]");
-      }
-    });
-    return false;
-  });
-  $('a.delete-template').click(function(){
-    if(confirm("Are you sure?")){ $(this).closest('.template-view').remove(); }
-    return false;
-  });
-})
-</script>
 <% end %>
+
 <%= hidden_field_tag('settings[tracker_ids][]',"") %>
 <p>
   <label>  <%= l :redmine_print_select_trackers %> </label>
@@ -67,20 +54,11 @@ $(function(){
   <% settings[:print_templates].each_with_index do |template, index| %>
     <span class="block template-view">
     <span>
-      <a class="edit-template icon icon-report" data-template-index="<%= template[0] %>" href="#"><%= template[0] %></a>
+      <a class="edit-template icon icon-report" data-template-index="<%= template %>" href="#"><%= template %></a>
     </span>
-    <span class="actions">
-      <% if index > 0 then %>
-        <a href="#" class="delete-template icon icon-del"><%= l(:button_delete) %></a>
-      <% end %>
-    </span>
-    <span><%= text_area_tag("settings[print_templates][#{template[0].to_s}]", template[1].to_s, { rows: 10, style: "display: none;"} ) %></span>
     </span>
   <% end %>
-        <a href="#" class="add-template icon icon-add"><%= l(:button_add) %></a>
 </label>
 </p>
-<p><label for="settings_print_template">
-  Загрузить темплейт
-</label><label id="settings_print_template" class="block template-load">
-</label></p>
+
+</fieldset>
