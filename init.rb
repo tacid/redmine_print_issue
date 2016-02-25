@@ -5,7 +5,7 @@ Redmine::Plugin.register :redmine_print_issue do
   name 'Redmine Print Issue plugin'
   author 'Tacid'
   description 'This is a plugin for printing issue description with template'
-  version '1.0.2'
+  version '1.1-dev'
   url 'https://github.com/tacid/redmine_print_issue'
   author_url 'https://github.com/tacid'
   settings default: {
