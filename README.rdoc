@@ -1,9 +1,11 @@
 = Plugin to print an issue description
 === About
-This is simple plugin designed to print an issue (currently only the description) using your HTML template.
-You can change the template on plugin settings page.
+This is simple plugin designed to print an issue with ODT templates using serenity[https://github.com/theoo/serenity] gem.
+All Your templates should be placed to templates directory of plugin and then selected for concrete trackers in plugin settings page.
 
-Also You can enable/disable this plugin for project and concrete trackers.
+You can change trackers and templates to use on plugin settings page.
+
+Also You can enable/disable this plugin for concrete trackers.
 
 === Installation instructions
 
